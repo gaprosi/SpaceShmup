@@ -442,6 +442,7 @@ MonoBehaviour:
   - {fileID: 5914197101726201746, guid: 4c47dd1e99e55f04ea87b19a8cd858ea, type: 3}
   enemySpawnPerSecond: 0.5
   enemyInsetDefault: 1.5
+  gameRestartDelay: 2
 --- !u!1 &1253853844
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +486,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253853844}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -621,7 +622,9 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
-  shieldLevel: 1
+  projectilePrefab: {fileID: 9162420889932002138, guid: 012529169c47916458b434fed26638a6, type: 3}
+  projectileSpeed: 40
+  _shieldLevel: 1
 --- !u!114 &1879916767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,3 +643,60 @@ MonoBehaviour:
   screenLocs: 0
   camWidth: 0
   camHeight: 0
+--- !u!1001 &6509308790123337713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865896154422324587, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162420889932002138, guid: 012529169c47916458b434fed26638a6, type: 3}
+      propertyPath: m_Name
+      value: ProjectileHero
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 012529169c47916458b434fed26638a6, type: 3}
