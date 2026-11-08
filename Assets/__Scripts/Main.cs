@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,11 +7,17 @@ public class Main : MonoBehaviour
 {
     static private Main S;
 
+    static private Dictionary<eWeaponType, WeaponDefinition>
+        WEAP_DICT;
+
     [Header("Inscribed")]
+    public bool spawnEnemies = true;
     public GameObject[] prefabEnemies;
     public float enemySpawnPerSecond = 0.5f;
     public float enemyInsetDefault = 1.5f;
     public float gameRestartDelay = 2f;
+
+    public WeaponDefinition[] weaponDefinitions;
 
     private BoundsCheck bndCheck;
 
@@ -20,25 +27,36 @@ public class Main : MonoBehaviour
         bndCheck = GetComponent<BoundsCheck>();
 
         Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+
+        WEAP_DICT =
+            new Dictionary<eWeaponType, WeaponDefinition>();
+
+        foreach (WeaponDefinition def in weaponDefinitions)
+        {
+            WEAP_DICT[def.type] = def;
+        }
     }
 
     public void SpawnEnemy()
     {
-        // choose a random enemy prefab
-        int ndx = Random.Range(0, prefabEnemies.Length);
-        GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
-
-        // find the enemy's screen inset
-        float enemyInset = enemyInsetDefault;
-
-        if (go.GetComponent<BoundsCheck>() != null)
+        if (!spawnEnemies)
         {
-            enemyInset = Mathf.Abs(
-                go.GetComponent<BoundsCheck>().radius
-            );
+            Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+            return;
         }
 
-        // set a random starting position above the screen
+        int ndx = Random.Range(0, prefabEnemies.Length);
+        GameObject go = Instantiate(prefabEnemies[ndx]);
+
+        float enemyInset = enemyInsetDefault;
+
+        BoundsCheck enemyBnd = go.GetComponent<BoundsCheck>();
+
+        if (enemyBnd != null)
+        {
+            enemyInset = Mathf.Abs(enemyBnd.radius);
+        }
+
         Vector3 pos = Vector3.zero;
 
         float xMin = -bndCheck.camWidth + enemyInset;
@@ -49,10 +67,9 @@ public class Main : MonoBehaviour
 
         go.transform.position = pos;
 
-        // schedule the next enemy
         Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
     }
-    
+
     void DelayedRestart()
     {
         Invoke(nameof(Restart), gameRestartDelay);
@@ -68,4 +85,14 @@ public class Main : MonoBehaviour
         S.DelayedRestart();
     }
 
+    static public WeaponDefinition GET_WEAPON_DEFINITION(
+        eWeaponType wt)
+    {
+        if (WEAP_DICT.ContainsKey(wt))
+        {
+            return WEAP_DICT[wt];
+        }
+
+        return new WeaponDefinition();
+    }
 }
