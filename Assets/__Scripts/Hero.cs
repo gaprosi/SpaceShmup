@@ -9,11 +9,6 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
-    
-public GameObject projectilePrefab;
-public float projectileSpeed = 40;
-
-
 
     [Header("Dynamic")]
     [Range(0, 4)]
@@ -21,6 +16,9 @@ public float projectileSpeed = 40;
     private float _shieldLevel = 1;
 
     private GameObject lastTriggerGo = null;
+
+    public delegate void WeaponFireDelegate();
+    public event WeaponFireDelegate fireEvent;
 
     void Awake()
     {
@@ -40,7 +38,6 @@ public float projectileSpeed = 40;
         float vAxis = Input.GetAxis("Vertical");
 
         Vector3 pos = transform.position;
-
         pos.x += hAxis * speed * Time.deltaTime;
         pos.y += vAxis * speed * Time.deltaTime;
 
@@ -51,26 +48,13 @@ public float projectileSpeed = 40;
             hAxis * rollMult,
             0
         );
-        
 
-if (Input.GetKeyDown(KeyCode.Space))
-{
-    TempFire();
-}
-
+        // fire weapons while space is held
+        if (Input.GetAxis("Jump") == 1 && fireEvent != null)
+        {
+            fireEvent();
+        }
     }
-    
-void TempFire()
-{
-    GameObject projGO = Instantiate(projectilePrefab);
-
-    projGO.transform.position = transform.position;
-
-    Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-
-    rigidB.velocity = Vector3.up * projectileSpeed;
-}
-
 
     void OnTriggerEnter(Collider other)
     {
@@ -99,10 +83,7 @@ void TempFire()
 
     public float shieldLevel
     {
-        get
-        {
-            return _shieldLevel;
-        }
+        get { return _shieldLevel; }
 
         private set
         {

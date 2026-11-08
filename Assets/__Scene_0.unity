@@ -122,6 +122,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &28290291
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 821696041}
+    m_Modifications:
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907075542105497568, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6456071294408287439, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: m_Name
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680904703452640417, guid: 545eaf9790298644abc29c032be48c87, type: 3}
+      propertyPath: _type
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 545eaf9790298644abc29c032be48c87, type: 3}
 --- !u!1001 &45328739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,6 +383,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &821696041 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 974008312187329754, guid: ae3a657191efe7040b52cc85f1d490eb, type: 3}
+  m_PrefabInstance: {fileID: 45328739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,9 +507,9 @@ MonoBehaviour:
   spawnEnemies: 1
   prefabEnemies:
   - {fileID: 5914197101726201746, guid: 4c47dd1e99e55f04ea87b19a8cd858ea, type: 3}
-  - {fileID: 3319825933102930435, guid: ac8336763c0c047aca9a469c10d3f448, type: 3}
-  - {fileID: 4070209521177695457, guid: 10ae278da906f451594d7989d76b6d15, type: 3}
-  - {fileID: 6217192625371338093, guid: 8b3b585cc9dbb43ff97ab0579e85fd71, type: 3}
+  - {fileID: 5914197101726201746, guid: 4c47dd1e99e55f04ea87b19a8cd858ea, type: 3}
+  - {fileID: 5914197101726201746, guid: 4c47dd1e99e55f04ea87b19a8cd858ea, type: 3}
+  - {fileID: 5914197101726201746, guid: 4c47dd1e99e55f04ea87b19a8cd858ea, type: 3}
   enemySpawnPerSecond: 0.5
   enemyInsetDefault: 1.5
   gameRestartDelay: 2
@@ -657,8 +723,6 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
-  projectilePrefab: {fileID: 9162420889932002138, guid: 012529169c47916458b434fed26638a6, type: 3}
-  projectileSpeed: 40
   _shieldLevel: 1
 --- !u!114 &1879916767
 MonoBehaviour:
