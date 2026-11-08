@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Main : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public eWeaponType[] powerUpFrequency = new eWeaponType[]
 };
 
     public WeaponDefinition[] weaponDefinitions;
+    
+[Header("Score")]
+public TMP_Text scoreText;
+
+private int totalScore = 0;
 
     private BoundsCheck bndCheck;
 
@@ -35,7 +41,7 @@ public eWeaponType[] powerUpFrequency = new eWeaponType[]
     {
         S = this;
         bndCheck = GetComponent<BoundsCheck>();
-
+        UpdateScoreDisplay();
         Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
 
         WEAP_DICT =
@@ -108,6 +114,7 @@ public eWeaponType[] powerUpFrequency = new eWeaponType[]
     
 static public void SHIP_DESTROYED(Enemy e)
 {
+    S.AddScore(e.score);
     // randomly decide whether to drop a powerup
     if (Random.value <= e.powerUpDropChance)
     {
@@ -128,6 +135,21 @@ static public void SHIP_DESTROYED(Enemy e)
 
         // place it where the enemy was destroyed
         pUp.transform.position = e.transform.position;
+    }
+}
+
+
+private void AddScore(int points)
+{
+    totalScore += points;
+    UpdateScoreDisplay();
+}
+
+private void UpdateScoreDisplay()
+{
+    if (scoreText != null)
+    {
+        scoreText.text = "Score: " + totalScore;
     }
 }
 
