@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
     public float fireRate = 0.3f;
     public float health = 10;
     public int score = 100;
+    
+public float powerUpDropChance = 1f;
+
+protected bool calledShipDestroyed = false;
 
     protected BoundsCheck bndCheck;
 
@@ -47,6 +51,7 @@ public class Enemy : MonoBehaviour
     }
 
 
+
 void OnCollisionEnter(Collision coll)
 {
     GameObject otherGO = coll.gameObject;
@@ -56,7 +61,6 @@ void OnCollisionEnter(Collision coll)
 
     if (p != null)
     {
-        // only damage enemies that are on screen
         if (bndCheck.isOnScreen)
         {
             health -= Main.GET_WEAPON_DEFINITION(
@@ -65,11 +69,17 @@ void OnCollisionEnter(Collision coll)
 
             if (health <= 0)
             {
+                // notify Main only once
+                if (!calledShipDestroyed)
+                {
+                    calledShipDestroyed = true;
+                    Main.SHIP_DESTROYED(this);
+                }
+
                 Destroy(gameObject);
             }
         }
 
-        // remove the projectile after the hit
         Destroy(otherGO);
     }
     else
